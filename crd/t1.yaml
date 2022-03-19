@@ -1,0 +1,20 @@
+apiVersion: cicd.study-k8s.com/v1alpha1
+kind: Task
+metadata:
+  name: mytask
+spec:
+  steps:
+  - name: step1
+    image: busybox:1.28
+    command: ["sh","-c"]
+    args:
+      - "echo step1"
+  - name: step2
+    image: busybox:1.28
+    args:
+      - "echo helloworld"
+  - name: step3
+    image: nginx
+    command: ["sh","-c"]
+    args:
+      - "echo helloworld"

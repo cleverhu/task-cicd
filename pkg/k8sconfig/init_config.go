@@ -1,9 +1,10 @@
 package k8sconfig
 
 import (
+	"log"
+
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
-	"log"
 )
 
 //全局变量

@@ -1,7 +1,6 @@
 package k8sconfig
 
 import (
-	corev1 "k8s.io/api/core/v1"
 	"log"
 	"os"
 	"sigs.k8s.io/controller-runtime/pkg/handler"
@@ -10,6 +9,7 @@ import (
 	taskv1alpha1 "github.com/cleverhu/task-cicd/pkg/apis/task/v1alpha1"
 	"github.com/cleverhu/task-cicd/pkg/controllers"
 
+	corev1 "k8s.io/api/core/v1"
 	"sigs.k8s.io/controller-runtime/pkg/builder"
 	logf "sigs.k8s.io/controller-runtime/pkg/log"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
@@ -39,7 +39,6 @@ func InitManager() {
 	cicdController := controllers.NewTaskController(
 		mgr.GetEventRecorderFor("mycicd"),
 	)
-
 	if err = builder.ControllerManagedBy(mgr).
 		For(&taskv1alpha1.Task{}).
 		Watches(&source.Kind{Type: &corev1.Pod{}}, handler.Funcs{UpdateFunc: cicdController.UpdatePodFunc}).
